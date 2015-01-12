@@ -12,7 +12,7 @@ dropZone.addEventListener('dragover', handleDragOver);
 dropZone.addEventListener('drop', handleFileSelect);
 
 var mousePos = {};
-var mouseEye = new eye(ctx, 100,100);
+var mouseEye = new eye(ctx, 0, 0);
 
 var spawnedEye = {};
 var eyeSpawned = false;
@@ -21,7 +21,6 @@ var eyesIT = Iterator(eyes);
 
 function loadImage(src){
 	if(!src.type.match(/image.*/)){
-		console.log("The dropped file is not an image: ", src.type);
 		return;
 	}
 	var reader = new FileReader();
@@ -44,7 +43,7 @@ function handleFileSelect(evt) {
 function handleDragOver(evt) {
   evt.stopPropagation();
   evt.preventDefault();
-  evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+  evt.dataTransfer.dropEffect = 'copy';
 }
 
 function initAnimation(){
