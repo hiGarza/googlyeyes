@@ -2,8 +2,9 @@ var canvas = document.getElementById("googlyCanvas");
 var ctx = canvas.getContext('2d');
 var img = new Image();
 
-var imageLoader = document.getElementById('imageLoader');
-    imageLoader.addEventListener('change', handleImage, false);
+var dropZone = document.getElementById('drop_zone');
+dropZone.addEventListener('dragover', handleDragOver);
+dropZone.addEventListener('drop', handleFileSelect);
 
 var mousePos = {};
 var mouseEye = new eye(ctx, 100,100);
@@ -13,15 +14,31 @@ var eyeSpawned = false;
 var eyes = [];
 var eyesIT = Iterator(eyes);
 
-function handleImage(e){
-    var reader = new FileReader();
-    reader.onload = function(event){
-      img.src = event.target.result;
-      img.onload = function(){
-      	initAnimation();
-      }
-    }
-    reader.readAsDataURL(e.target.files[0]);     
+function loadImage(src){
+	if(!src.type.match(/image.*/)){
+		console.log("The dropped file is not an image: ", src.type);
+		return;
+	}
+	var reader = new FileReader();
+	reader.onload = function(e){
+		img.onload = function(){
+			initAnimation();
+		};
+		img.src = e.target.result;
+	};
+	reader.readAsDataURL(src);
+}
+
+function handleFileSelect(evt) {
+  evt.stopPropagation();
+  evt.preventDefault();
+  loadImage(evt.dataTransfer.files[0]);
+}
+
+function handleDragOver(evt) {
+  evt.stopPropagation();
+  evt.preventDefault();
+  evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
 }
 
 function initAnimation(){
