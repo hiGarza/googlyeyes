@@ -1,12 +1,9 @@
 var canvas = document.getElementById("googlyCanvas");
 var ctx = canvas.getContext('2d');
+resizeCanvas();
+
+var animationStarted = false;
 var img = new Image();
-
-ctx.font = '30pt Helvetica';
-ctx.textAlign = 'center';
-ctx.fillStyle = '#BBBBBB';
-ctx.fillText('Drag an image here...', canvas.width/2, canvas.height/2);
-
 var dropZone = document.getElementById('googlyCanvas');
 dropZone.addEventListener('dragover', handleDragOver);
 dropZone.addEventListener('drop', handleFileSelect);
@@ -18,6 +15,23 @@ var spawnedEye = {};
 var eyeSpawned = false;
 var eyes = [];
 var eyesIT = Iterator(eyes);
+
+window.addEventListener('resize', resizeCanvas, false);
+function resizeCanvas() {
+  canvas.width = window.innerWidth * 0.9;
+  canvas.height = window.innerHeight * 0.9;
+
+  if(!animationStarted){
+  	showInstructions();
+  }
+}
+
+function showInstructions(){
+	ctx.font = '30pt Helvetica';
+	ctx.textAlign = 'center';
+	ctx.fillStyle = '#BBBBBB';
+	ctx.fillText('Drag an image here...', canvas.width/2, canvas.height/2);
+}
 
 function loadImage(src){
 	if(!src.type.match(/image.*/)){
@@ -47,6 +61,7 @@ function handleDragOver(evt) {
 }
 
 function initAnimation(){
+	animationStarted = true;
 	canvas.addEventListener('mousemove', handleMouseMove);
 	canvas.addEventListener('mousedown', handleMouseDown);
 	canvas.addEventListener('mouseup', handleMouseUp);
@@ -69,7 +84,8 @@ function update(){
 }
 
 function draw(){
-	ctx.drawImage(img, 0, 0, 1024, 1024 * img.height / img.width);
+	ctx.clearRect(0,0,canvas.width, canvas.height);
+	ctx.drawImage(img, (canvas.width - img.width) / 2, (canvas.height - img.height) / 2, img.width, img.height);
 	for(var i=0;i< eyes.length;i++){
 		eyes[i].draw();
 	}
