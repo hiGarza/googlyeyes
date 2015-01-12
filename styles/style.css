@@ -12,6 +12,7 @@ body{
 }
 
 .dropZone {
+	cursor: auto !important; 
 	border: 2px dashed #BBBBBB;
 	border-radius: 5px;
 }
