@@ -2,7 +2,12 @@ var canvas = document.getElementById("googlyCanvas");
 var ctx = canvas.getContext('2d');
 var img = new Image();
 
-var dropZone = document.getElementById('drop_zone');
+ctx.font = '30pt Helvetica';
+ctx.textAlign = 'center';
+ctx.fillStyle = '#BBBBBB';
+ctx.fillText('Drag an image here...', canvas.width/2, canvas.height/2);
+
+var dropZone = document.getElementById('googlyCanvas');
 dropZone.addEventListener('dragover', handleDragOver);
 dropZone.addEventListener('drop', handleFileSelect);
 
@@ -22,6 +27,7 @@ function loadImage(src){
 	var reader = new FileReader();
 	reader.onload = function(e){
 		img.onload = function(){
+			canvas.className = "";
 			initAnimation();
 		};
 		img.src = e.target.result;
