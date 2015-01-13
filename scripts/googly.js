@@ -8,22 +8,11 @@ var dropZone = document.getElementById('googlyCanvas');
 dropZone.addEventListener('dragover', handleDragOver);
 dropZone.addEventListener('drop', handleFileSelect);
 
-function showInstructions(){
-	ctx.font = '30pt Helvetica';
-	ctx.textAlign = 'center';
-	ctx.fillStyle = '#BBBBBB';
-	ctx.fillText('Drag an image here...', canvas.width/2, canvas.height/2);
-}
-
 window.addEventListener('resize', resizeCanvas, false);
 resizeCanvas();
 function resizeCanvas() {
   canvas.width = window.innerWidth * 0.9;
   canvas.height = window.innerHeight * 0.9;
-
-  if(!animationStarted){
-  	showInstructions();
-  }
 }
 
 function handleDragOver(evt) {

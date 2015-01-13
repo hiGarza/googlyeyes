@@ -1,5 +1,60 @@
 body{
+	margin: 0;
+	padding-top: 5px;
+	font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
 	background-color: #000000;
+}
+
+.instructions {
+	position: absolute;
+	bottom: 50%;
+	width: 100%;
+	color: #444444;
+	font-size: 30px;
+	text-align: center;
+}
+
+.instructions p {
+	margin: 5px 0 5px;
+}
+
+.button {
+	margin: 0 auto;
+	width: 150px;
+	height: 40px;
+	border-radius: 5px;
+	background-image: linear-gradient(to bottom, #444444, #333333);
+	background-repeat: repeat-x;
+	border: solid 1px #111111;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-size: 30px;
+	line-height: 40px;
+	text-align: center;
+}
+
+.button:hover {
+	background-image: linear-gradient(to bottom, #333333, #222222);
+}
+
+.button:active{
+	background-image: linear-gradient(to bottom, #222222, #111111);
+}
+
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+}
+
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: inherit;
+	height: inherit;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
 }
 
 #googlyCanvas {
@@ -13,6 +68,6 @@ body{
 
 .dropZone {
 	cursor: auto !important; 
-	border: 2px dashed #BBBBBB;
+	border: 2px dashed #363636;
 	border-radius: 5px;
 }
