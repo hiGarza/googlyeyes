@@ -6,15 +6,15 @@
     <link rel="stylesheet" type="text/css" href="styles/style.css">
   </head>
   <body>
-  <div class="instructions">
-    <div class="fileUpload button">
+    <div id="button" class="fileUpload button">
       <span>Upload</span>
-      <input type="file" class="upload" />
+      <input type="file" id="imageLoader" class="upload"/>
     </div>
-    <p> or </p>
-    <p> Drag an image here </p>
-  </div>
     <canvas id="googlyCanvas" class="dropZone"></canvas>
+    <div id="instructions" class="instructions">
+      <p> or </p>
+      <p> Drag an image </p>
+    </div>
     <script type="text/javascript" src="scripts/eye.js"></script>
     <script type="text/javascript" src="scripts/googly.js"></script>
     <script type="text/javascript" src="scripts/animation.js"></script>

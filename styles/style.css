@@ -6,20 +6,43 @@ body{
 }
 
 .instructions {
+	width: 220px;
+	height: 100px;
 	position: absolute;
 	bottom: 50%;
-	width: 100%;
+	left: 50%;
+	margin-left: -110px;
 	color: #444444;
 	font-size: 30px;
 	text-align: center;
+	z-index: -1;
 }
 
 .instructions p {
 	margin: 5px 0 5px;
 }
 
+.fileUpload {
+	position: absolute;
+	left: 50%;
+	margin-left: -75px;
+	top: 50%;
+	margin-top: -140px;
+	overflow: hidden;
+}
+
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: inherit;
+	height: inherit;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
 .button {
-	margin: 0 auto;
 	width: 150px;
 	height: 40px;
 	border-radius: 5px;
@@ -39,22 +62,6 @@ body{
 
 .button:active{
 	background-image: linear-gradient(to bottom, #222222, #111111);
-}
-
-.fileUpload {
-	position: relative;
-	overflow: hidden;
-}
-
-.fileUpload input.upload {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: inherit;
-	height: inherit;
-	cursor: pointer;
-	opacity: 0;
-	filter: alpha(opacity=0);
 }
 
 #googlyCanvas {

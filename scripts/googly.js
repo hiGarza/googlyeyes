@@ -1,5 +1,8 @@
 var canvas = document.getElementById("googlyCanvas");
 var ctx = canvas.getContext('2d');
+var button = document.getElementById("button");
+var imageLoader = document.getElementById('imageLoader');
+imageLoader.addEventListener('change', handleImage, false);
 
 var img = new Image();
 
@@ -13,6 +16,17 @@ resizeCanvas();
 function resizeCanvas() {
   canvas.width = window.innerWidth * 0.9;
   canvas.height = window.innerHeight * 0.9;
+}
+
+function handleImage(e){
+  var reader = new FileReader();
+  reader.onload = function(event){
+    img.src = event.target.result;
+    img.onload = function(){
+     imageUploaded();
+    }
+  }
+  reader.readAsDataURL(e.target.files[0]);     
 }
 
 function handleDragOver(evt) {
@@ -34,14 +48,19 @@ function loadImage(src){
 	var reader = new FileReader();
 	reader.onload = function(e){
 		img.onload = function(){
-			canvas.className = "";
-			scaleSize(canvas.width, canvas.height, img.width, img.height);
-			initAnimation();
+			imageUploaded();
 		};
 		img.src = e.target.result;
 	};
 	reader.readAsDataURL(src);
 }
+
+function imageUploaded(){
+  canvas.className = "";
+  scaleSize(canvas.width, canvas.height, img.width, img.height);
+  initAnimation();
+  button.style.display="none";
+};
 
 function scaleSize(maxW, maxH, width, height){
   var ratio = height / width;
